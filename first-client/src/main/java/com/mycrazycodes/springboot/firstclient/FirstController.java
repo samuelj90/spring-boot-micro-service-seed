@@ -23,10 +23,10 @@ public class FirstController {
     @RequestMapping("/")
     public String callService() {
         RestTemplate restTemplate = restTemplateBuilder.build();
-        InstanceInfo instanceInfo = eurekaClient.getNextServerFromEureka("service", false);
+        InstanceInfo instanceInfo = eurekaClient.getNextServerFromEureka("FIRST-SERVICE", false);
         String baseUrl = instanceInfo.getHomePageUrl();
         ResponseEntity<String> response =
-                restTemplate.exchange(baseUrl + "/message", HttpMethod.GET.GET, null, String.class);
+                restTemplate.exchange(baseUrl + "/info", HttpMethod.GET.GET, null, String.class);
         return response.getBody();
     }
 }
